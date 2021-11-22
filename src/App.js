@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import CustomerList from './components/CustomerList';
+import TrainingList from './components/TrainingList';
+import { AppBar, Tab, Tabs, Toolbar, Typography } from '@mui/material';
 
 function App() {
+
+  const [tab, setTab] = useState('customers');
+
+  const tabChange = (event, value) => {
+    setTab(value);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" sx={{ mr: 20 }}>
+              Personal Trainer
+            </Typography>
+            <Tabs value={tab} onChange={tabChange} textColor="inherit" TabIndicatorProps={{style: {background: "white"}}}>
+              <Tab value="customers" label="Customers" />
+              <Tab value="trainings" label="Trainings" />
+            </Tabs>
+          </Toolbar>
+        </AppBar>
+      {tab === "customers" && <CustomerList />}
+      {tab === "trainings" && <TrainingList />}
     </div>
   );
 }
