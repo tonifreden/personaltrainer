@@ -3,6 +3,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { Button } from '@mui/material';
 // import Snackbar
 
+import dayjs from 'dayjs';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 
@@ -23,7 +24,9 @@ export default function TrainingList() {
     const columns = [
         {
             headerName: "Date & time",
-            field: "date",
+            valueGetter: params => {
+                return dayjs(params.data.date).format("DD.MM.YYYY HH:mm");
+            },
             sortable: true,
             filter: true,
             cellStyle: {
@@ -50,7 +53,7 @@ export default function TrainingList() {
         {
             headerName: "Customer",
             valueGetter: params => {
-                return params.data.customer.firstname + " " + params.data.customer.lastname;
+                return params.data.customer !== null ? params.data.customer.firstname + " " + params.data.customer.lastname : "";
             },
             sortable: true,
             filter: true,
@@ -64,7 +67,7 @@ export default function TrainingList() {
             sortable: false,
             filter: false,
             width: 120,
-            cellRendererFramework: params => <Button size="small" color="error">Delete</Button>
+            cellRendererFramework: params => <Button size="small" color="error">Delete</Button> // only a "placeholder" for now
             // cellRendererFramework: params => <Button size="small" color="error" onClick={() => deleteCustomer(params.value)}>Delete</Button>
         }
     ];

@@ -88,8 +88,8 @@ export default function CustomerList() {
             sortable: false,
             filter: false,
             width: 120,
-            cellRendererFramework: params => <Button size="small" color="error">Delete</Button>
-            // cellRendererFramework: params => <Button size="small" color="error" onClick={() => deleteCustomer(params.value)}>Delete</Button>
+            cellRendererFramework: params => <Button size="small" color="error">Delete</Button> // only a "placeholder" for now
+            // cellRendererFramework: params => <Button size="small" color="error" onClick={() => deleteTraining(params.value)}>Delete</Button>
         },
         {
             headerName: "",
