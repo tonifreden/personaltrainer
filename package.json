@@ -2,6 +2,10 @@
   "name": "personaltrainer",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "14.17.5",
+    "npm": "7.24.2"
+  },
   "dependencies": {
     "@date-io/dayjs": "^2.11.0",
     "@emotion/react": "^11.6.0",
