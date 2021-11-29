@@ -7,14 +7,40 @@ import 'ag-grid-community/dist/styles/ag-theme-material.css';
 import AddCustomer from "./AddCustomer";
 import DeleteCustomer from "./DeleteCustomer";
 import EditCustomer from "./EditCustomer";
-import AddTraining from "./AddTraining";
+import AddTraining from "../trainings/AddTraining";
+import Export from "../other/Export";
 
 
 export default function CustomerList() {
     const [customers, setCustomers] = useState([]);
     const [open, setOpen] = useState(false);
     const [msg, setMsg] = useState("");
-    const [severity, setSeverity] = useState("");
+    const [severity, setSeverity] = useState("success");
+    
+    const [gridApi, setGridApi] = useState(null);
+    
+    const onGridReady = (params) => {
+        setGridApi(params.api);
+    };
+
+    const exportCustomers = () => {
+        const csvParams = {
+            fileName: "customers.csv",
+            columnKeys: [
+                "firstname",
+                "lastname",
+                "streetaddress",
+                "postcode",
+                "city",
+                "email",
+                "phone"
+            ]
+        }
+        gridApi.exportDataAsCsv(csvParams);
+        setMsg("CSV file exported")
+        setSeverity("success");
+        setOpen(true);
+    };
 
     useEffect(() => {
         fetchCustomers();
@@ -204,10 +230,13 @@ export default function CustomerList() {
         },
     ]
 
-    return(
+    return (
         <div>
             <Toolbar>
                 <AddCustomer addCustomer={addCustomer} />
+                <Toolbar sx={{marginLeft: "auto"}}>
+                    <Export exportCustomers={exportCustomers} />
+                </Toolbar>
             </Toolbar>
             <div className="ag-theme-material" style={{marginTop: 30, height: 593, width: "86%", marginLeft: "auto", marginRight: "auto"}}>
                 <AgGridReact
@@ -216,11 +245,12 @@ export default function CustomerList() {
                     pagination={true}
                     paginationPageSize={10}
                     suppressCellSelection={true}
+                    onGridReady={onGridReady}
                 />
             </div>
             <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
                 <Alert severity={severity} variant="filled">{msg}</Alert>
             </Snackbar>
         </div>
-    )
+    );
 }

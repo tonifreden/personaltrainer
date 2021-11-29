@@ -11,7 +11,7 @@ export default function TrainingList() {
     const [trainings, setTrainings] = useState([]);
     const [open, setOpen] = useState(false);
     const [msg, setMsg] = useState("");
-    const [severity, setSeverity] = useState("");
+    const [severity, setSeverity] = useState("success");
 
     useEffect(() => {
         fetchTrainings();
@@ -49,7 +49,7 @@ export default function TrainingList() {
         {
             headerName: "Date & time",
             valueGetter: params => {
-                return dayjs(params.data.date).format("DD.MM.YYYY HH:mm");
+                return dayjs(params.data.date).format("DD/MM/YYYY HH:mm");
             },
             sortable: true,
             filter: true,

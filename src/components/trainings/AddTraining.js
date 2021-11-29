@@ -3,7 +3,6 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, 
 import { AddCircleTwoTone, CancelTwoTone, CheckCircleTwoTone } from '@mui/icons-material';
 import { DateTimePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDayjs from '@mui/lab/AdapterDayjs';
-import 'dayjs/locale/fi';
 import dayjs from "dayjs";
 
 export default function AddTraining(props) {
@@ -86,7 +85,8 @@ export default function AddTraining(props) {
                             variant="outlined"
                             onKeyPress={handleEnterKey}
                             />
-                        <LocalizationProvider dateAdapter={AdapterDayjs} locale={dayjs.locale("fi")}>
+                            {/* Poista locale?? Vai käytä FullCalendarin daypickeriä jos sellaista löytyy? */}
+                        <LocalizationProvider dateAdapter={AdapterDayjs} locale={dayjs.locale("en-gb")}>
                             <DateTimePicker
                                 margin="dense"
                                 name="date"
