@@ -94,6 +94,9 @@ export default function Calendar() {
             <br/>
             <div>
                 Try clicking the events for more info!
+                <br/>
+                <br/>
+                (Apparently, if the <b>date</b> or <b>customer</b> of ANY training is invalid/null, then <b>no data</b> is shown here.)
             </div>
         </div>
     );

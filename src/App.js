@@ -26,7 +26,7 @@ export default function App() {
                 <Tab value="customers" label="Customers" icon={<AccessibilityNew />} />
                 <Tab value="trainings" label="Trainings" icon={<FitnessCenter />} />
                 <Tab value="calendar" label="Calendar" icon={<Today />} />
-                <Tab value="statistics" label="Statistics (placeholder)" icon={<AssessmentOutlined />} />
+                <Tab value="statistics" label="Statistics" icon={<AssessmentOutlined />} />
               </Tabs>
             </Toolbar>
           </AppBar>

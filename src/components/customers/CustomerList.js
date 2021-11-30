@@ -37,7 +37,7 @@ export default function CustomerList() {
             ]
         }
         gridApi.exportDataAsCsv(csvParams);
-        setMsg("CSV file exported")
+        setMsg("CSV file exported");
         setSeverity("success");
         setOpen(true);
     };

@@ -85,7 +85,6 @@ export default function AddTraining(props) {
                             variant="outlined"
                             onKeyPress={handleEnterKey}
                             />
-                            {/* Poista locale?? Vai käytä FullCalendarin daypickeriä jos sellaista löytyy? */}
                         <LocalizationProvider dateAdapter={AdapterDayjs} locale={dayjs.locale("en-gb")}>
                             <DateTimePicker
                                 margin="dense"
